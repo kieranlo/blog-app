@@ -1,0 +1,61 @@
+.blogContainer {
+  display: flex;
+  flex-direction: row-reverse; /* Reverses order: nav on left, content on right */
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.blogContent {
+  flex: 1;
+  max-width: 75%;
+  padding-left: 20px; /* Changed from padding-right */
+}
+
+.navigationPane {
+  width: 250px;
+  position: sticky; /* Makes it stick during scroll */
+  top: 70px; /* Adjust based on your header height */
+  height: fit-content;
+  padding-right: 20px; /* Changed from padding-left */
+  border-right: 1px solid #333; /* Changed from border-left */
+  margin-right: 20px; /* Changed from margin-left */
+  align-self: flex-start; /* Ensures it sticks to the top */
+  z-index: 10; /* Ensure navigation doesn't get hidden */
+}
+
+.navItem {
+  margin: 8px 0;
+  font-size: 14px;
+  list-style-type: none;
+}
+
+/* Changed from level-2 and level-3 to match your className in the component */
+.level-1 {
+  font-weight: bold;
+}
+
+.level-2 {
+  padding-left: 15px;
+  font-weight: normal;
+}
+
+.active {
+  color: #0070f3;
+}
+
+/* Hide navigation pane on smaller screens */
+@media screen and (max-width: 768px) {
+  .navigationPane {
+    display: none; /* Hide the navigation pane completely */
+  }
+  
+  .blogContainer {
+    flex-direction: column; /* Stack content vertically */
+  }
+  
+  .blogContent {
+    max-width: 100%; /* Allow content to use full width */
+    padding-left: 0; /* Remove the padding that was accommodating the nav pane */
+  }
+}

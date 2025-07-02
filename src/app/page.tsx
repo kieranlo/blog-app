@@ -12,9 +12,12 @@ export default function Home() {
   const markdownContent = fs.readFileSync(markdownFilePath, "utf-8");
   
   return (
-    <Link href="/blogs">
-      <button>Go to Blogss</button>
+    <>
+      <Link href="/blogs">
+        <button>Go to Blogss</button>
+      </Link>
       <ReactMarkdown>{markdownContent}</ReactMarkdown>
-    </Link>
+    </>
+    
   );
 }

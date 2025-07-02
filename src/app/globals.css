@@ -13,7 +13,7 @@
 }
 
 
-body {
+body{
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
@@ -23,23 +23,45 @@ body {
   overflow-y: auto; /* Allow scrolling if content is too tall */
 }
 
-h1, h2, h3, p {
+h1, h2, h3 {
   margin: 0 auto;
-  padding: 10px;
+  padding: 5px;
   max-width: 800px; /* Restricts text width for readability */
+  font-weight: bold;
+  margin-top: 30px;
+}
+
+h2 {
+  font-size: 24px; /* Smaller heading for sub-sections */
+}
+
+h3 {
+  font-size: 20px; /* Smaller heading for sub-sections */
 }
 
 html, body {
   margin: 0; /* Removes default margin */
 }
 
-main {
+p {
+  padding: 5px;
+}
+
+main{
   flex: 1; /* Allows main to grow and fill available space */
   display: flex;
   flex-direction: column;
   justify-content: flex-start; /* Align content to the top */
-  text-align: center;
-  padding: 20px 0;
+  text-align: justify;
+  padding: 20px 12%;
+  line-height: 1.6; /* Improves readability */
+}
+
+/* Phones */
+@media screen and (max-width: 768px) {
+  main {
+    padding: 20px 8%;
+  }
 }
 
 header {
@@ -51,7 +73,7 @@ header {
   top: 0; /* This is required to make sticky positioning work */
   background-color: #343434; /* Slightly lighter than main background */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
-
+  z-index: 20; /* Ensures header stays above other content */
 }
 
 footer {
@@ -62,5 +84,10 @@ footer {
   border-top: 1px solid #252525; /* Subtle separator line */
 }
 
-
+.date-right {
+  text-align: right;
+  font-style: italic;
+  color: #777;
+  margin-bottom: 2rem;
+}
 
