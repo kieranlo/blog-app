@@ -1,54 +1,52 @@
-import path from "path";
-import fs from "fs";
-import ReactMarkdown from "react-markdown";
-import styles from "./blog.module.css"; // Assuming you have a CSS module for styles
+import fs from 'fs';
+import path from 'path';
+import Link from 'next/link';
+import styles from './blog.module.css';
 
-export default function Blogs() {
-  const markdownFilePath = path.join(process.cwd(), "src", "app", "blogs", "how_to_do_great_work.md");
-  const markdownContent = fs.readFileSync(markdownFilePath, "utf-8");
+// Helper function to extract metadata from markdown content
+function extractMetadata(content: string) {
+  const titleMatch = content.match(/^#\s+(.+)$/m);
+  const title = titleMatch ? titleMatch[1] : 'Untitled';
   
-  // Extract headings from markdown content
-  const headings = [];
-  const headingRegex = /^(#{1,2})\s+(.+)$/gm;
-  let match;
+  const dateMatch = content.match(/Date:\s*(.+)$/m);
+  const date = dateMatch ? dateMatch[1] : 'No date';
   
-  while ((match = headingRegex.exec(markdownContent)) !== null) {
-    const level = match[1].length;  // Number of # symbols
-    const text = match[2];
-    const id = text.toLowerCase().replace(/[^\w]+/g, '-');
+  return { title, date };
+}
+
+export default function BlogIndex() {
+  // Get all markdown files from the content directory
+  const contentDir = path.join(process.cwd(), 'src', 'app', 'blogs', 'content');
+  const files = fs.readdirSync(contentDir).filter(file => file.endsWith('.md'));
+  
+  // Extract blog metadata for each file
+  const blogs = files.map(file => {
+    const content = fs.readFileSync(path.join(contentDir, file), 'utf-8');
+    const { title, date } = extractMetadata(content);
+    const slug = file.replace('.md', '');
     
-    headings.push({ level, text, id });
-  }
-
+    return {
+      slug,
+      title,
+      date
+    };
+  });
+  
   return (
-    <div className={styles.blogContainer}>
-      <div className={styles.blogContent}>
-        {/* Main content with IDs for each heading */}
-        <ReactMarkdown components={{
-          h2: ({node, ...props}) => <h1 id={props.children?.toString().toLowerCase().replace(/[^\w]+/g, '-')} {...props} />,
-          h3: ({node, ...props}) => <h2 id={props.children?.toString().toLowerCase().replace(/[^\w]+/g, '-')} {...props} />
-        }}>
-          {markdownContent}
-        </ReactMarkdown>
-      </div>
-      
-      {/* Navigation pane */}
-      <div className={styles.navigationPane}>
-        <nav>
-          <ul>
-            {headings.map((heading, index) => (
-              <li 
-                key={index} 
-                className={`${styles.navItem} ${styles[`level-${heading.level}`]} ${heading.level === 1 ? styles.active : ''}`}
-              >
-                <a href={`#${heading.id}`}>
-                  {heading.text}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </nav>
-      </div>
+    <div className={styles.blogListContainer}>
+      <h1>Blog Posts</h1>
+      <ul className={styles.blogList}>
+        {blogs.map((blog, index) => (
+          <li key={index} className={styles.blogItem}>
+            <Link href={`/blogs/${blog.slug}`}>
+              <div className={styles.blogCard}>
+                <h2>{blog.title}</h2>
+                <p className={styles.blogDate}>{blog.date}</p>
+              </div>
+            </Link>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }

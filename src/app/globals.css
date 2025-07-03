@@ -12,7 +12,6 @@
   --foreground: #bdbdbd;  /* Light text */
 }
 
-
 body{
   background: var(--background);
   color: var(--foreground);
@@ -31,11 +30,11 @@ h1, h2, h3 {
   margin-top: 30px;
 }
 
-h2 {
+h1 {
   font-size: 24px; /* Smaller heading for sub-sections */
 }
 
-h3 {
+h2 {
   font-size: 20px; /* Smaller heading for sub-sections */
 }
 
@@ -74,6 +73,17 @@ header {
   background-color: #343434; /* Slightly lighter than main background */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
   z-index: 20; /* Ensures header stays above other content */
+}
+
+nav {
+  display: flex;
+  justify-content: center; /* Centers the flex items horizontally */
+  gap: 20px;
+  width: 100%; /* Ensure nav takes full width of header */
+}
+
+nav a:hover {
+  text-decoration: underline;
 }
 
 footer {
