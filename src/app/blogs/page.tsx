@@ -11,7 +11,18 @@ function extractMetadata(content: string) {
   const dateMatch = content.match(/Date:\s*(.+)$/m);
   const date = dateMatch ? dateMatch[1] : 'No date';
   
-  return { title, date };
+  // Create a Date object for sorting
+  let dateObj = new Date(0); // Default to epoch
+  if (date !== 'No date') {
+    try {
+      dateObj = new Date(date);
+      console.log(`${title}: Parsed date: ${dateObj.toISOString()}`);
+    } catch (e) {
+      console.error(`Could not parse date: ${date}, ${dateObj}`);
+    }
+  }
+  
+  return { title, date, dateObj };
 }
 
 export default function BlogIndex() {
@@ -22,28 +33,32 @@ export default function BlogIndex() {
   // Extract blog metadata for each file
   const blogs = files.map(file => {
     const content = fs.readFileSync(path.join(contentDir, file), 'utf-8');
-    const { title, date } = extractMetadata(content);
+    const { title, date, dateObj } = extractMetadata(content);
     const slug = file.replace('.md', '');
     
     return {
       slug,
       title,
-      date
+      date,
+      dateObj
     };
   });
   
+  // Sort blogs by date in descending order (newest first)
+  blogs.sort((a, b) => b.dateObj.getTime() - a.dateObj.getTime());
+  
   return (
-    <div className={styles.blogListContainer}>
+    <div>
       <h1>Blog Posts</h1>
-      <ul className={styles.blogList}>
+      <ul>
         {blogs.map((blog, index) => (
-          <li key={index} className={styles.blogItem}>
-            <Link href={`/blogs/${blog.slug}`}>
-              <div className={styles.blogCard}>
-                <h2>{blog.title}</h2>
-                <p className={styles.blogDate}>{blog.date}</p>
-              </div>
-            </Link>
+          <li key={index} className={styles.blogCard}>
+            <div>
+                <Link href={`/blogs/${blog.slug}`}>
+                    <h2>{blog.title}</h2>
+                </Link>
+                <p>{blog.date}</p>
+            </div>
           </li>
         ))}
       </ul>

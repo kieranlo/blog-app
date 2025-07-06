@@ -1,6 +1,6 @@
 # How to do Great work
 
-Date: 2nd July 2025
+Date: July 2 2025
 
 ## Perception of Work
 
