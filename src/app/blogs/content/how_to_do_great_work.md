@@ -40,7 +40,7 @@ Don't worry if you find you're interested in different things than other people.
 
 If you're making something for people, make sure it's something they actually want. The best way to do this is to make something you yourself want. Write the story you want to read; build the tool you want to use. Since your friends probably have similar interests, this will also get you your initial audience.
 
-This should follow from the excitingness rule. Obviously the most exciting story to write will be the one you want to read. The reason I mention this case explicitly is that so many people get it wrong. Instead of making what they want, they try to make what some imaginary, more sophisticated audience wants. And once you go down that route, you're lost.
+This should follow from the excitingness rule. Obviously the most exciting story to write will be the one you want to read. The reason I mention this case explicitly is that so many people get it wrong. **Instead of making what they want, they try to make what some imaginary, more sophisticated audience wants.** And once you go down that route, you're lost.
 
 ## Planning or no planning?
 
@@ -53,8 +53,6 @@ I think for most people who want to do great work, the right strategy is not to 
 The alternative to starting with something small and evolving it is to plan in advance what you're going to do. And planning does usually seem the more responsible choice. It sounds more organized to say "we're going to do x and then y and then z" than "we're going to try x and see what happens." And it is more organized; it just doesn't work as well.
 
 Planning per se isn't good. It's sometimes necessary, but it's a necessary evil — a response to unforgiving conditions. It's something you have to do because you're working with inflexible media, or because you need to coordinate the efforts of a lot of people. If you keep projects small and use flexible media, you don't have to plan as much, and your designs can evolve instead.
-
-Being prolific is underrated. The more different things you try, the greater the chance of discovering something new. Understand, though, that trying lots of things will mean trying lots of things that don't work. You can't have a lot of good ideas without also having a lot of bad ones.
 
 Though it sounds more responsible to begin by studying everything that's been done before, **you'll learn faster and have more fun by trying stuff.** And you'll understand previous work better when you do look at it. So err on the side of starting. Which is easier when starting means starting small; those two ideas fit together like two puzzle pieces.
 
@@ -137,3 +135,7 @@ Many more people could try to do great work than do. What holds them back is a c
 Yes, you'll have to work hard. But again, lots of people have to work hard. And if you're working on something you find very interesting, which you necessarily will if you're on the right path, the work will probably feel less burdensome than a lot of your peers'.
 
 **The discoveries are out there, waiting to be made. Why not by you?**
+
+### Reference
+
+1. [https://www.paulgraham.com/greatwork.html](https://www.paulgraham.com/greatwork.html)

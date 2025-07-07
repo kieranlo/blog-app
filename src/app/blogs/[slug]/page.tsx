@@ -34,8 +34,13 @@ export default async function BlogPost({ params }: { params: { slug: string } })
     <div className={styles.blogContainer}>
       <div className={styles.blogContent}>
         <ReactMarkdown components={{
-          h2: ({node, ...props}) => <h1 id={props.children?.toString().toLowerCase().replace(/[^\w]+/g, '-') || ''} {...props} />,
-          h3: ({node, ...props}) => <h2 id={props.children?.toString().toLowerCase().replace(/[^\w]+/g, '-') || ''} {...props} />
+            h2: ({node, ...props}) => <h1 id={props.children?.toString().toLowerCase().replace(/[^\w]+/g, '-') || ''} {...props} />,
+            h3: ({node, ...props}) => <h2 id={props.children?.toString().toLowerCase().replace(/[^\w]+/g, '-') || ''} {...props} />,
+            ol: ({node, ...props}) => <ol style={{
+                listStyleType: 'decimal',
+                paddingLeft: '2rem',
+                margin: '1rem 0'
+            }} {...props} />,
         }}>
           {markdownContent}
         </ReactMarkdown>

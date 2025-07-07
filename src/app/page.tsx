@@ -6,7 +6,7 @@ export default function Home() {
     <>
       <div>
         <h1>Welcome</h1>
-        <p style={{ padding: "20px" }}>Press Blogs in the header to view my blogs.</p>
+        <p style={{ padding: "20px" }}>Press Blogs to view my blogs.</p>
       </div>
     </>
     
