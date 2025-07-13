@@ -6,7 +6,8 @@ export default function Home() {
     <>
       <div>
         <h1>Welcome</h1>
-        <p style={{ padding: "20px" }}>Press Blogs to view my blogs.</p>
+        <p>Press Blogs to view my blogs.</p>
+        <p>Contact: lokieran@gmail.com</p>
       </div>
     </>
     
