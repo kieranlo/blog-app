@@ -2,6 +2,9 @@ import path from "path";
 import fs from "fs";
 import { notFound } from "next/navigation";
 import ReactMarkdown from "react-markdown";
+import remarkMath from 'remark-math';
+import rehypeKatex from 'rehype-katex';
+import 'katex/dist/katex.min.css'; // Import KaTeX CSS
 import styles from "../blog.module.css";
 
 export default async function BlogPost({ params }: { params: { slug: string } }) {
@@ -33,7 +36,10 @@ export default async function BlogPost({ params }: { params: { slug: string } })
   return (
     <div className={styles.blogContainer}>
       <div className={styles.blogContent}>
-        <ReactMarkdown components={{
+        <ReactMarkdown 
+          remarkPlugins={[remarkMath]}
+          rehypePlugins={[rehypeKatex]}
+          components={{
             h2: ({node, ...props}) => <h2 id={props.children?.toString().toLowerCase().replace(/[^\w]+/g, '-') || ''} {...props} />,
             h3: ({node, ...props}) => <h3 id={props.children?.toString().toLowerCase().replace(/[^\w]+/g, '-') || ''} {...props} />,
             ol: ({node, ...props}) => <ol style={{

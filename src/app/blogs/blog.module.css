@@ -19,6 +19,16 @@
   scroll-margin-top: 60px; /* Adjust based on your header height */
 }
 
+.blogContent ul,
+.blogContent ol, 
+.blogContent p {
+  margin-bottom: 30px; /* Space after a list ends */
+}
+
+.blogContent li {
+  margin-bottom: 10px; /* Space between list items */
+}
+
 .blogList {
   list-style: none;
   padding-left: 0; /* Remove default left padding */
