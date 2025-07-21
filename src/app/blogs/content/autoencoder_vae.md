@@ -39,10 +39,21 @@ $$\text{loss function} = ||x - \hat{x}||^2 + KL[N(\mu_x, \sigma_x), N(0,1)] = ||
 
 This loss function ensures that the input is reconstructed (reconstruction loss in first part), and the latent space should be normally distribututed (similarity loss/ regularization loss in second part)
 
-Kullback-Leibler divergence is used to measure the differences between the returned distribution and the standard Gaussian. This way, we require the covariance matrices to be close to the identity, preventing punctual distributions, and the mean to be close to 0, preventing encoded distributions to be too far apart from each others. Without this constraints, the neural network will behave almost like the classic autoencoder.
+Kullback-Leibler divergence is used to measure the differences between the returned distribution and the standard Gaussian. 
+This way, we require:
+-  the covariance matrices to be close to the identity
+   -  preventing punctual distributions
+   -  ensures continuity: two close points in latent space should not give two completely different content once decoded
+- the mean to be close to 0
+  - preventing encoded distributions to be too far apart from each others
+  - ensures completeness: a point sampled from latent space should give meaningful content once decoded
+Without this constraints, the neural network will behave almost like the classic autoencoder.
 
 ![VAE regularization image](/images/autoencoder_vae/vae_regularization.png)
 
+![ae vs vae latent space image](/images/autoencoder_vae/ae_vae_latent_space.png)
+
+When we sample the latent vector from overlapping clusters, we get morphed data.
 
 ## Application
 
@@ -54,10 +65,11 @@ A modification of VAE -  discrete variational autoencoder (dVAE, also similar to
 
 ![VQVAE architecture image](/images/autoencoder_vae/vqvae.png)
 
-### Reference
-- 
+## References
 - J. Rocca, “Understanding Variational Autoencoders (VAEs) - TDS Archive - Medium,” Medium, Sep. 24, 2019. https://medium.com/data-science/understanding-variational-autoencoders-vaes-f70510919f73
 - A. Anwar, “Difference between AutoEncoder (AE) and Variational AutoEncoder (VAE) | Towards Data Science,” Towards Data Science, Nov. 03, 2021. https://towardsdatascience.com/difference-between-autoencoder-ae-and-variational-autoencoder-vae-ed7be1c038f2
 - R. Rombach, A. Blattmann, D. Lorenz, P. Esser, and B. Ommer, “High-Resolution Image Synthesis with Latent Diffusion Models,” Apr. 2022. Available: https://arxiv.org/pdf/2112.10752
 - A. Van Den, O. Deepmind, V. Oriol, Deepmind, and K. Deepmind, “Neural Discrete Representation Learning.” Available: https://arxiv.org/pdf/1711.00937
+- D. E. Rudd, “Using variational autoencoders to learn variations in data,” Sophos News, Jun. 15, 2018. https://news.sophos.com/en-us/2018/06/15/using-variational-autoencoders-to-learn-variations-in-data
+‌
 ‌

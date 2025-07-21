@@ -24,16 +24,21 @@ body{
 
 h1, h2, h3 {
   font-weight: bold;
-  margin-top: 30px;
   margin-bottom: 10px;
 }
 
 h1 {
+  margin-top: 30px;
   font-size: 24px; /* Smaller heading for sub-sections */
 }
 
 h2 {
+  margin-top: 50px;
   font-size: 20px; /* Smaller heading for sub-sections */
+}
+
+h3 {
+  margin-top: 30px;
 }
 
 html, body {

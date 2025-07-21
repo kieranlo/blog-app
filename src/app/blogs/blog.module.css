@@ -19,14 +19,8 @@
   scroll-margin-top: 60px; /* Adjust based on your header height */
 }
 
-.blogContent ul,
-.blogContent ol, 
 .blogContent p {
-  margin-bottom: 30px; /* Space after a list ends */
-}
-
-.blogContent li {
-  margin-bottom: 10px; /* Space between list items */
+  margin-bottom: 20px; /* Space after a list ends */
 }
 
 .blogList {
@@ -58,6 +52,28 @@
   margin: 8px 0;
   font-size: 14px;
   list-style-type: none;
+}
+
+.ol {
+  list-style-type: decimal;
+  padding-left: 2rem;
+  margin-top: 10px;
+  margin-bottom: 0;
+}
+
+.ol li {
+  margin-bottom: 10px; /* Space between ordered list items */
+}
+
+.ul {
+  list-style-type: disc;
+  padding-left: 2rem;
+  margin-top: 5px;
+  margin-bottom: 0;
+}
+
+.ul li {
+  margin-bottom: 5px; /* Space between unordered list items */
 }
 
 /* Changed from level-2 and level-3 to match your className in the component */
