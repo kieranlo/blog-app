@@ -18,7 +18,7 @@ function extractMetadata(content: string) {
       dateObj = new Date(date);
       console.log(`${title}: Parsed date: ${dateObj.toISOString()}`);
     } catch (e) {
-      console.error(`Could not parse date: ${date}, ${dateObj}`);
+      console.error(`Error ${e}, Could not parse date: ${date}, ${dateObj}`);
     }
   }
   

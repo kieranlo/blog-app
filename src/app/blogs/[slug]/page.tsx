@@ -8,6 +8,21 @@ import 'katex/dist/katex.min.css';
 import styles from "../blog.module.css";
 import { use } from "react";
 
+// Add this function to tell Next.js which slugs to generate
+export async function generateStaticParams() {
+  const blogsDirectory = path.join(process.cwd(), "src", "app", "blogs", "content");
+  const filenames = fs.readdirSync(blogsDirectory);
+  
+  // Filter for markdown files and remove extensions
+  const slugs = filenames
+    .filter(filename => filename.endsWith(".md"))
+    .map(filename => ({
+      slug: filename.replace(/\.md$/, "")
+    }));
+  
+  return slugs;
+}
+
 export default function BlogPost({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } =  use(params);
   
@@ -41,10 +56,10 @@ export default function BlogPost({ params }: { params: Promise<{ slug: string }>
           remarkPlugins={[remarkMath]}
           rehypePlugins={[rehypeKatex]}
           components={{
-            h2: ({node, ...props}) => <h2 id={props.children?.toString().toLowerCase().replace(/[^\w]+/g, '-') || ''} {...props} />,
-            h3: ({node, ...props}) => <h3 id={props.children?.toString().toLowerCase().replace(/[^\w]+/g, '-') || ''} {...props} />,
-            ol: ({node, ...props}) => <ol className={styles.ol} {...props} />,
-            ul: ({node, ...props}) => <ul className={styles.ul} {...props} />,
+            h2: ({...props}) => <h2 id={props.children?.toString().toLowerCase().replace(/[^\w]+/g, '-') || ''} {...props} />,
+            h3: ({...props}) => <h3 id={props.children?.toString().toLowerCase().replace(/[^\w]+/g, '-') || ''} {...props} />,
+            ol: ({...props}) => <ol className={styles.ol} {...props} />,
+            ul: ({...props}) => <ul className={styles.ul} {...props} />,
         }}>
           {markdownContent}
         </ReactMarkdown>
