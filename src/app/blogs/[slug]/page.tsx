@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import path from "path";
 import fs from "fs";
 import { notFound } from "next/navigation";
@@ -7,9 +6,10 @@ import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import 'katex/dist/katex.min.css';
 import styles from "../blog.module.css";
+import { use } from "react";
 
-export default async function BlogPost({ params }: { params: { slug: string } }) {
-  const { slug } = await params;
+export default function BlogPost({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } =  use(params);
   
   // Path to the specific markdown file
   const markdownFilePath = path.join(process.cwd(), "src", "app", "blogs", "content", `${slug}.md`);
