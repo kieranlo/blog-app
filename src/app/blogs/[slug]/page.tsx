@@ -8,6 +8,12 @@ import 'katex/dist/katex.min.css';
 import styles from "../blog.module.css";
 import { use } from "react";
 
+// Function to transform image URIs based on environment
+function transformImageUri(src: string) {
+  const basePath = process.env.NODE_ENV === 'production' ? '/blog-app' : '';
+  return `${basePath}${src}`;
+}
+
 // Add this function to tell Next.js which slugs to generate
 export async function generateStaticParams() {
   const blogsDirectory = path.join(process.cwd(), "src", "app", "blogs", "content");
@@ -56,6 +62,10 @@ export default function BlogPost({ params }: { params: Promise<{ slug: string }>
           remarkPlugins={[remarkMath]}
           rehypePlugins={[rehypeKatex]}
           components={{
+            img: ({...props}) => {
+              const srcString = typeof props.src === 'string' ? props.src : '';
+              return <img {...props} src={transformImageUri(srcString)} alt={props.alt || ''} />;
+            },
             h2: ({...props}) => <h2 id={props.children?.toString().toLowerCase().replace(/[^\w]+/g, '-') || ''} {...props} />,
             h3: ({...props}) => <h3 id={props.children?.toString().toLowerCase().replace(/[^\w]+/g, '-') || ''} {...props} />,
             ol: ({...props}) => <ol className={styles.ol} {...props} />,
